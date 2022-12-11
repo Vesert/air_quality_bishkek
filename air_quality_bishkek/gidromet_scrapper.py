@@ -88,12 +88,3 @@ async def get_mapdata(gidromet_state:list[GidrometData]):
                     gidromet_state.append(GidrometData(**gidromet_elem))
     except aiohttp.ClientError:
         logging.exception('Get_mapdata in trouble')
-                
-
-async def test_get_mapdata():
-    gidromet_state = []
-    await get_mapdata(gidromet_state)
-    print(gidromet_state)
-
-if __name__=='__main__':
-    asyncio.run(test_get_mapdata())
