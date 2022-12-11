@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "air-quality-bishkek"
+version = "0.1.0"
+description = ""
+authors = ["Your Name <you@example.com>"]
+readme = "README.md"
+packages = [{include = "air_quality_bishkek"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+aiogram = "^2.23.1"
+bs4 = "^0.0.1"
+haversine = "^2.7.0"
+apscheduler = "^3.9.1.post1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
