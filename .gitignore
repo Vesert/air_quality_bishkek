@@ -1,6 +1,0 @@
-*.log
-__pycache__
-req.txt
-.DS_Store
-poetry.lock
-pyproject.toml
