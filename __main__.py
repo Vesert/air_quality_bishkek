@@ -27,7 +27,7 @@ async def on_shutdown(dispatcher:Dispatcher):
     await bot.delete_webhook()
 
 
-logger = logging.Logger(__name__,logging.ERROR)
+logger = logging.Logger(__name__,logging.INFO)
 f_handler = logging.StreamHandler()
 f_format = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
 f_handler.setFormatter(f_format)

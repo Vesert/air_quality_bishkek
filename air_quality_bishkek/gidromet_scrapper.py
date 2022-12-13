@@ -8,8 +8,8 @@ from apscheduler.schedulers.asyncio import AsyncIOScheduler
 from apscheduler.triggers.interval import IntervalTrigger
 import logging
 
-logger=logging.Logger(name = __name__,level=logging.ERROR)
-f_handler = logging.FileHandler('gidromet_scrapper.log')
+logger=logging.Logger(name = __name__,level=logging.INFO)
+f_handler = logging.StreamHandler('gidromet_scrapper.log')
 f_format = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
 f_handler.setFormatter(f_format)
 logger.addHandler(f_handler)
@@ -75,6 +75,7 @@ class GidrometData:
 
 
 async def get_mapdata(gidromet_state:list[GidrometData]):
+    
     gidromet_state.clear()
     try:
         async with aiohttp.ClientSession() as session:
@@ -86,5 +87,6 @@ async def get_mapdata(gidromet_state:list[GidrometData]):
 
                 for gidromet_elem in  json.loads(mapdata):
                     gidromet_state.append(GidrometData(**gidromet_elem))
+        logger.info('gidromet scrapped',len(gidromet_state))
     except aiohttp.ClientError:
-        logging.exception('Get_mapdata in trouble')
+        loggier.exception('Get_mapdata in trouble')
