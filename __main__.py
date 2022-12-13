@@ -14,6 +14,9 @@ from air_quality_bishkek.gidromet_scrapper import GidrometData, get_mapdata
 
 
 async def on_startup(dispatcher:Dispatcher):
+    scheduler = AsyncIOScheduler()
+    scheduler.add_job(get_mapdata,IntervalTrigger(start_date=datetime.now(),hours=1),next_run_time=datetime.now(),args=(gidromet_state,))
+    scheduler.start()
     await dp.bot.set_my_commands([
         types.BotCommand('/start','Начало работы с ботом'),
         types.BotCommand('/about_aqi','Справка об AQI')
@@ -49,10 +52,6 @@ bot = Bot(TOKEN)
 bot['gidromet_state'] = gidromet_state
 bot['logger'] = logger
 dp = Dispatcher(bot)
-
-scheduler = AsyncIOScheduler()
-scheduler.add_job(get_mapdata,IntervalTrigger(start_date=datetime.now(),hours=1),next_run_time=datetime.now(),args=(gidromet_state,))
-scheduler.start()
 
 register_handlers(dp)
 
