@@ -89,4 +89,4 @@ async def get_mapdata(gidromet_state:list[GidrometData]):
                     gidromet_state.append(GidrometData(**gidromet_elem))
         logger.info('gidromet scrapped',len(gidromet_state))
     except aiohttp.ClientError:
-        loggier.exception('Get_mapdata in trouble')
+        logger.exception('Get_mapdata in trouble')
